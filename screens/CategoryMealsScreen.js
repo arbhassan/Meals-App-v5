@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
+import Category from "../models/category";
+import Colors from "../constants/Colors";
 
-const CategoriesMealsScreen = ({ route, navigation }) => {
+const CategoryMealsScreen = ({ route, navigation }) => {
   const catId = route.params.categoryId;
 
   const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+
+  useEffect(() => {
+    navigation.setOptions({
+      title: selectedCategory.title,
+      headerStyle: {
+        backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
+      },
+      headerTintColor:
+        Platform.OS === "android" ? "white" : Colors.primaryColor,
+    });
+  }, []);
 
   return (
     <View style={styles.screen}>
@@ -17,6 +30,7 @@ const CategoriesMealsScreen = ({ route, navigation }) => {
           navigation.navigate("MealDetail");
         }}
       />
+      <Button title="Update the title" />
       <Button
         title="Go Back"
         onPress={() => {
@@ -26,6 +40,15 @@ const CategoriesMealsScreen = ({ route, navigation }) => {
     </View>
   );
 };
+
+// // CategoryMealsScreen.navigationOptions = (navigationData) => {
+// //   const catId = navigationData.route.params.categoryId;
+// //   const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+// //   return {
+// //     title: selectedCategory.title,
+// //   };
+// };
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -33,4 +56,4 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-export default CategoriesMealsScreen;
+export default CategoryMealsScreen;
