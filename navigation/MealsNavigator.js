@@ -9,23 +9,24 @@ import { Platform } from "react-native";
 
 const Stack = createStackNavigator();
 
-const MealsNavigator = (props) => {
-  //   console.log(props);
-
+const MealsNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor:
+              Platform.OS === "android" ? Colors.primaryColor : "",
+          },
+          headerTintColor:
+            Platform.OS === "android" ? "white" : Colors.primaryColor,
+        }}
+      >
         <Stack.Screen
           name="Categories"
           component={CategoriesScreen}
           options={{
-            //   title: "Meal Categories",
-            headerStyle: {
-              backgroundColor:
-                Platform.OS === "android" ? Colors.primaryColor : "",
-            },
-            headerTintColor:
-              Platform.OS === "android" ? "white" : Colors.primaryColor,
+            title: "Meal Categories",
           }}
         />
         <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
