@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
+import { MEALS } from "../data/dummy-data";
 
-const MealDetailScreen = (props) => {
+const MealDetailScreen = ({ route, navigation }) => {
+  const mealId = route.params.mealId;
+
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: selectedMeal.title,
+    });
+  }, []);
+
   return (
     <View style={styles.screen}>
-      <Text>The Meal Detail Screen</Text>
+      <Text>{selectedMeal.title}</Text>
       <Button
         title="Go Back to Categories"
         onPress={() => {
