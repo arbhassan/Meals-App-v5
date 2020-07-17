@@ -14,6 +14,7 @@ const MealsNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
+          animationEnabled: "false",
           headerStyle: {
             backgroundColor:
               Platform.OS === "android" ? Colors.primaryColor : "",

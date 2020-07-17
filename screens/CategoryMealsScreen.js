@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
-import Category from "../models/category";
-import Colors from "../constants/Colors";
 
 const CategoryMealsScreen = ({ route, navigation }) => {
   const catId = route.params.categoryId;
 
   const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       title: selectedCategory.title,
     });
