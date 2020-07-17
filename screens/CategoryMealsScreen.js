@@ -1,11 +1,25 @@
 import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
-import { CATEGORIES } from "../data/dummy-data";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
+import { FlatList } from "react-native-gesture-handler";
+import { render } from "react-dom";
 
 const CategoryMealsScreen = ({ route, navigation }) => {
+  const renderMealItem = (itemData) => {
+    return (
+      <View>
+        <Text>{itemData.item.title}</Text>
+      </View>
+    );
+  };
+
   const catId = route.params.categoryId;
 
   const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+
+  const displayedMeals = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(catId) >= 0
+  );
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -15,21 +29,7 @@ const CategoryMealsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.screen}>
-      <Text>The Categores Meals Screen</Text>
-      <Text>{selectedCategory.title}</Text>
-      <Button
-        title="Go to Details!"
-        onPress={() => {
-          navigation.navigate("MealDetail");
-        }}
-      />
-      <Button title="Update the title" />
-      <Button
-        title="Go Back"
-        onPress={() => {
-          navigation.pop();
-        }}
-      />
+      <FlatList data={displayedMeals} renderItem={renderMealItem} />
     </View>
   );
 };
