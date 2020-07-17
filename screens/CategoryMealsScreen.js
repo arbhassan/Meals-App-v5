@@ -1,15 +1,19 @@
 import React, { useLayoutEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, FlatList } from "react-native";
 import { CATEGORIES, MEALS } from "../data/dummy-data";
-import { FlatList } from "react-native-gesture-handler";
-import { render } from "react-dom";
+import MealItem from "../components/MealItem";
 
 const CategoryMealsScreen = ({ route, navigation }) => {
   const renderMealItem = (itemData) => {
     return (
-      <View>
-        <Text>{itemData.item.title}</Text>
-      </View>
+      <MealItem
+        title={itemData.item.title}
+        image={itemData.item.imageUrl}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        onSelectMeal={() => {}}
+      />
     );
   };
 
@@ -29,7 +33,11 @@ const CategoryMealsScreen = ({ route, navigation }) => {
 
   return (
     <View style={styles.screen}>
-      <FlatList data={displayedMeals} renderItem={renderMealItem} />
+      <FlatList
+        data={displayedMeals}
+        renderItem={renderMealItem}
+        style={{ width: "100%" }}
+      />
     </View>
   );
 };
@@ -47,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    padding: 15,
   },
 });
 export default CategoryMealsScreen;
