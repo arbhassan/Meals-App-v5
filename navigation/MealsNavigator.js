@@ -2,6 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
 import MealDetailScreen from "../screens/MealDetailScreen";
@@ -12,12 +13,20 @@ import Colors from "../constants/Colors";
 import { Platform } from "react-native";
 
 const Stack = createNativeStackNavigator();
-const TabNav = createBottomTabNavigator();
+const TabNav =
+  Platform.OS === "android"
+    ? createMaterialBottomTabNavigator()
+    : createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <TabNav.Navigator tabBarOptions={{ activeTintColor: Colors.accentColor }}>
+      <TabNav.Navigator
+        initialRouteName="Meals"
+        activeColor="white"
+        shifting={true}
+        // barStyle={{ backgroundColor: Colors.primaryColor }}
+      >
         <TabNav.Screen
           name="Meals"
           component={MealsNavigator}
@@ -25,15 +34,18 @@ const AppNavigator = () => {
             tabBarIcon: ({ color }) => {
               return <Ionicons name="ios-restaurant" size={25} color={color} />;
             },
+            tabBarColor: Colors.primaryColor,
           }}
         />
         <TabNav.Screen
           name="Favorites"
           component={FavoritesScreen}
+          barStyle={{ backgroundColor: Colors.accentColor }}
           options={{
             tabBarIcon: ({ color }) => {
               return <Ionicons name="ios-star" size={25} color={color} />;
             },
+            tabBarColor: Colors.accentColor,
           }}
         />
       </TabNav.Navigator>
