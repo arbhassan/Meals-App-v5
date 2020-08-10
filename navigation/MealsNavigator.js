@@ -28,10 +28,29 @@ const MealsNavigator = () => {
           component={CategoriesScreen}
           options={{
             title: "Meal Categories",
+            headerTitleStyle: {
+              fontSize: 18,
+            },
           }}
         />
-        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
-        <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+        <Stack.Screen
+          name="CategoryMeals"
+          component={CategoryMealsScreen}
+          options={{
+            headerTitleStyle: {
+              fontSize: 18,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="MealDetail"
+          component={MealDetailScreen}
+          options={{
+            headerTitleStyle: {
+              fontSize: 18,
+            },
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

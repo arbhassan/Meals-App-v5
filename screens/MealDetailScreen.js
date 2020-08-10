@@ -1,6 +1,9 @@
 import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
+import { Item, HeaderButtons } from "react-navigation-header-buttons";
+
 import { MEALS } from "../data/dummy-data";
+import HeaderButton from "../components/HeaderButton";
 
 const MealDetailScreen = ({ route, navigation }) => {
   const mealId = route.params.mealId;
@@ -9,7 +12,23 @@ const MealDetailScreen = ({ route, navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
+      // headerTitleStyle: {
+      // fontSize: 16,
+      // },
+
       title: selectedMeal.title,
+
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Favorite"
+            iconName="ios-star"
+            onPress={() => {
+              console.log("Mark as favorite!");
+            }}
+          />
+        </HeaderButtons>
+      ),
     });
   }, []);
 
