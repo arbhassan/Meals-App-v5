@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 15,
+    paddingVertical: 0,
   },
 });
 export default CategoryMealsScreen;
