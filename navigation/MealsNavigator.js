@@ -1,20 +1,20 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import MealDetailScreen from "../screens/MealDetailScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import CategoriesScreen from "../screens/CategoriesScreen";
 import Colors from "../constants/Colors";
 import { Platform } from "react-native";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const MealsNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          animationEnabled: "false",
+          stackAnimation: "none",
           headerStyle: {
             backgroundColor:
               Platform.OS === "android" ? Colors.primaryColor : "",

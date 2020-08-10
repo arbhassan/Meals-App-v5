@@ -20,7 +20,12 @@ const CategoriesScreen = (props) => {
   };
 
   return (
-    <FlatList data={CATEGORIES} numColumns={2} renderItem={renderGridItem} />
+    <FlatList
+      data={CATEGORIES}
+      numColumns={2}
+      renderItem={renderGridItem}
+      showsVerticalScrollIndicator={false}
+    />
   );
 };
 

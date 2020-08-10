@@ -41,6 +41,7 @@ const CategoryMealsScreen = ({ route, navigation }) => {
         data={displayedMeals}
         renderItem={renderMealItem}
         style={{ width: "100%" }}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );

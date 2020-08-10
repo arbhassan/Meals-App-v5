@@ -19,7 +19,7 @@ const MealDetailScreen = ({ route, navigation }) => {
       <Button
         title="Go Back to Categories"
         onPress={() => {
-          props.navigation.popToTop();
+          navigation.popToTop();
         }}
       />
     </View>
