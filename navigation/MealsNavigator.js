@@ -15,6 +15,10 @@ const MealsNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           stackAnimation: "none",
+          headerTitleStyle: {
+            fontSize: 18,
+          },
+
           headerStyle: {
             backgroundColor:
               Platform.OS === "android" ? Colors.primaryColor : "",
@@ -28,29 +32,10 @@ const MealsNavigator = () => {
           component={CategoriesScreen}
           options={{
             title: "Meal Categories",
-            headerTitleStyle: {
-              fontSize: 18,
-            },
           }}
         />
-        <Stack.Screen
-          name="CategoryMeals"
-          component={CategoryMealsScreen}
-          options={{
-            headerTitleStyle: {
-              fontSize: 18,
-            },
-          }}
-        />
-        <Stack.Screen
-          name="MealDetail"
-          component={MealDetailScreen}
-          options={{
-            headerTitleStyle: {
-              fontSize: 18,
-            },
-          }}
-        />
+        <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+        <Stack.Screen name="MealDetail" component={MealDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
