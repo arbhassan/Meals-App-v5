@@ -12,6 +12,18 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import Colors from "../constants/Colors";
 import { Platform } from "react-native";
 
+const defaultStackNavOptions = {
+  stackAnimation: "none",
+  headerTitleStyle: {
+    fontSize: 18,
+  },
+
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
+};
+
 const Stack = createNativeStackNavigator();
 const TabNav =
   Platform.OS === "android"
@@ -25,6 +37,7 @@ const AppNavigator = () => {
         initialRouteName="Meals"
         activeColor="white"
         shifting={true}
+        sceneAnimationEnabled={false}
         // barStyle={{ backgroundColor: Colors.primaryColor }}
       >
         <TabNav.Screen
@@ -39,7 +52,7 @@ const AppNavigator = () => {
         />
         <TabNav.Screen
           name="Favorites"
-          component={FavoritesScreen}
+          component={FavNavigator}
           barStyle={{ backgroundColor: Colors.accentColor }}
           options={{
             tabBarIcon: ({ color }) => {
@@ -55,20 +68,7 @@ const AppNavigator = () => {
 
 const MealsNavigator = () => {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        stackAnimation: "none",
-        headerTitleStyle: {
-          fontSize: 18,
-        },
-
-        headerStyle: {
-          backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
-        },
-        headerTintColor:
-          Platform.OS === "android" ? "white" : Colors.primaryColor,
-      }}
-    >
+    <Stack.Navigator screenOptions={defaultStackNavOptions}>
       <Stack.Screen
         name="Categories"
         component={CategoriesScreen}
@@ -77,6 +77,15 @@ const MealsNavigator = () => {
         }}
       />
       <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+      <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const FavNavigator = () => {
+  return (
+    <Stack.Navigator screenOptions={defaultStackNavOptions}>
+      <Stack.Screen name="Favorites" component={FavoritesScreen} />
       <Stack.Screen name="MealDetail" component={MealDetailScreen} />
     </Stack.Navigator>
   );
