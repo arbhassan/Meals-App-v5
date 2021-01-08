@@ -18,11 +18,11 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 
 const defaultStackNavOptions = {
-  stackAnimation: "none",
   headerTitleStyle: {
+    // fontFamily: "open-sans-bold",
+    // fontWeight: "200",
     fontSize: 18,
   },
-
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
   },
