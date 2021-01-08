@@ -103,9 +103,19 @@ const MainNavigator = () => {
     <NavigationContainer>
       <Drawer.Navigator
         initialRouteName="Meals"
+        drawerContentOptions={{
+          activeTintColor: Colors.accentColor,
+          labelStyle: {
+            fontFamily: "open-sans-bold",
+          },
+        }}
         screenOptions={defaultStackNavOptions}
       >
-        <Drawer.Screen name="MealsFavs" component={AppNavigator} />
+        <Drawer.Screen
+          name="MealsFavs"
+          component={AppNavigator}
+          options={{ drawerLabel: "Meals" }}
+        />
         <Drawer.Screen name="Filters" component={FiltersNavigator} />
       </Drawer.Navigator>
     </NavigationContainer>
