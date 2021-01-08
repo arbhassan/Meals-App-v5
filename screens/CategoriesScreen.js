@@ -1,17 +1,43 @@
-import React from "react";
-import { Text, View, FlatList, StyleSheet } from "react-native";
-
+import React, { useLayoutEffect } from "react";
+import {
+  Text,
+  View,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
+
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import HeaderButton from "../components/HeaderButton";
 import CategoryGridTile from "../components/CategoryGridTile";
 
-const CategoriesScreen = (props) => {
+const CategoriesScreen = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Menu"
+            iconName="ios-menu"
+            onPress={() => {
+              navigation.toggleDrawer();
+            }}
+          ></Item>
+        </HeaderButtons>
+      ),
+      title: "Meal Categories",
+    });
+  }, []);
+
   const renderGridItem = (itemData) => {
     return (
       <CategoryGridTile
         title={itemData.item.title}
         color={itemData.item.color}
         onSelect={() => {
-          props.navigation.navigate("CategoryMeals", {
+          navigation.navigate("CategoryMeals", {
             categoryId: itemData.item.id,
           });
         }}
@@ -27,10 +53,6 @@ const CategoriesScreen = (props) => {
       showsVerticalScrollIndicator={false}
     />
   );
-};
-
-CategoriesScreen.navigationOptions = {
-  headerTitle: "Meal Categories",
 };
 
 const styles = StyleSheet.create({

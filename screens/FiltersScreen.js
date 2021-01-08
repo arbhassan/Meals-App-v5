@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-const FiltersScreen = (props) => {
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
+
+const FiltersScreen = ({ navigation }) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Filter Meals",
+      headerLeft: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="Menu"
+            iconName="ios-menu"
+            onPress={() => {
+              navigation.toggleDrawer();
+            }}
+          ></Item>
+        </HeaderButtons>
+      ),
+    });
+  }, []);
+
   return (
     <View style={styles.screen}>
       <Text>The Filters Screen</Text>
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
