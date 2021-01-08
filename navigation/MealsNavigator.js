@@ -19,9 +19,11 @@ import HeaderButton from "../components/HeaderButton";
 
 const defaultStackNavOptions = {
   headerTitleStyle: {
-    // fontFamily: "open-sans-bold",
-    // fontWeight: "200",
+    fontFamily: "open-sans-bold",
     fontSize: 18,
+  },
+  headerBackTitleStyle: {
+    fontFamily: "open-sans-bold",
   },
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
