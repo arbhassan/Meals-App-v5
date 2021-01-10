@@ -8,8 +8,8 @@ import {
   Image,
 } from "react-native";
 import { Item, HeaderButtons } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
-import { MEALS } from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 
@@ -22,9 +22,11 @@ const ListItem = (props) => {
 };
 
 const MealDetailScreen = ({ route, navigation }) => {
+  const availableMeals = useSelector((state) => state.meals.meals);
+
   const mealId = route.params.mealId;
 
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
 
   useLayoutEffect(() => {
     navigation.setOptions({
